@@ -5,26 +5,40 @@ interface Student {
     location: string;
 }
 
-const studentOne: Student = {
-    firstName: 'student 1 first name',
-    lastName: 'student 1 last name',
-    age: 33,
-    location: 'student 1 location'
+const student1: Student = {
+    firstName: 'student one first',
+    lastName: 'student one last',
+    age: 16,
+    location: 'student one location',
 }
 
-const studentTwo: Student = {
-    firstName: 'student 2 first name',
-    lastName: 'student 2 last name',
-    age: 42,
-    location: 'student 2 location'
+const student2: Student = {
+    firstName:  'student two first',
+    lastName: 'student two last',
+    age: 18,
+    location: 'student two location',
 }
 
-let studentsList: Array<Student> = [ studentOne, studentTwo ]
 
-const studentRows: string = studentsList.map((student) => {
-    return '<tr><td>' + student.firstName + '</td><td>' + student.location + '</td></tr>'
-}).join('');
+const studentsList: Array<Student> = [student1, student2];
 
-let studentTable: string = '<table>' + studentRows + '</table>'
 
-console.log(studentTable)
+const table: HTMLTableElement = document.createElement('table');
+const tcontent: HTMLTableSectionElement = document.createElement('tcontent');
+
+
+studentsList.forEach(student => {
+    const row: HTMLTableRowElement = document.createElement('tr');
+    const colOne: HTMLTableDataCellElement = document.createElement('td');
+    const colTwo: HTMLTableDataCellElement = document.createElement('td');
+    colOne.innerHTML = student.firstName;
+    colTwo.innerHTML = student.location;
+    row.append(colOne, colTwo);
+    tcontent.append(row);
+});
+
+
+table.append(tcontent);
+document.body.appendChild(table);
+
+
